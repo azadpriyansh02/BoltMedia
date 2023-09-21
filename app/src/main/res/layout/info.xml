@@ -18,12 +18,14 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:backgroundTint="#5766B6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:cardCornerRadius="20dp"
-        android:layout_marginTop="300dp">
+        android:layout_marginTop="300dp"
+        android:layout_marginBottom="60dp">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

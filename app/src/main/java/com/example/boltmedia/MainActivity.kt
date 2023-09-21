@@ -1,8 +1,11 @@
 package com.example.boltmedia
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.boltmedia.Fragments.HomeFragment
+import com.example.boltmedia.Fragments.MoviesFragment
+import com.example.boltmedia.Fragments.SearchFragment
+import com.example.boltmedia.Fragments.TvshowsFragment
 import com.example.boltmedia.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

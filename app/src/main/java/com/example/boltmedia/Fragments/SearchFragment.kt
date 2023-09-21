@@ -1,7 +1,6 @@
-package com.example.boltmedia
+package com.example.boltmedia.Fragments
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -20,6 +19,8 @@ import com.android.volley.toolbox.DiskBasedCache
 import com.android.volley.toolbox.HurlStack
 import com.android.volley.toolbox.JsonObjectRequest
 import com.bumptech.glide.Glide
+import com.example.boltmedia.Info
+import com.example.boltmedia.R
 
 
 class SearchFragment : Fragment() {
@@ -66,7 +67,7 @@ class SearchFragment : Fragment() {
                         rating.text= "Rating:"+response.getString("imdbRating")
                         name.text = response.getString("Title")+"\n\n"+"Writer: "+response.getString("Writer")+"\n\n"
                         card.setOnClickListener {
-                            val intent=Intent(context,Info::class.java)
+                            val intent=Intent(context, Info::class.java)
                             val imgurl=response.getString("Poster")
                             val plot="Plot:"+"\n\n"+response.getString("Plot")+"\n\n"
                             val rating="Rating:"+response.getString("imdbRating")

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeFragment">
+    tools:context=".Fragments.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.viewpager2.widget.ViewPager2
@@ -17,39 +17,19 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/movies"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Movies Fragment"
-                android:textSize="32dp"
-                android:layout_marginLeft="60dp"
-                />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:layout_marginLeft="140dp"
-                android:text="Display"
-                android:id="@+id/display"/>
-            <Button
-                android:layout_below="@+id/display"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:layout_marginLeft="140dp"
-                android:text="Display"
-                android:id="@+id/display1"/>
-        </RelativeLayout>
-    </ScrollView>
+        app:layout_constraintVertical_bias="0.498"
+        />
+   <androidx.cardview.widget.CardView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="280dp"
+       app:cardCornerRadius="5dp"
+       android:backgroundTint="#3F51B5">
+       <androidx.recyclerview.widget.RecyclerView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/homeRecyclerView"
+           />
+   </androidx.cardview.widget.CardView>
 
 </FrameLayout>
