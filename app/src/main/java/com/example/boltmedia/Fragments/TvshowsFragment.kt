@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -52,7 +53,7 @@ class TvshowsFragment : Fragment() {
                         var tvShow= TvShow(poster,title,rating)
                         tvShowList.add(tvShow)
                     }
-                    recyclerView?.layoutManager= LinearLayoutManager(context)
+                    recyclerView?.layoutManager= GridLayoutManager(context,4)
                     recyclerView?.adapter= tvAdapter(tvShowList)
                 },
                 { error ->

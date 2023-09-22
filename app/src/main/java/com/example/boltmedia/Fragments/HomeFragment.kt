@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -23,6 +24,8 @@ import com.example.boltmedia.Adapters.CarouselRVAdapter
 import com.example.boltmedia.Adapters.HomeAdapter
 import com.example.boltmedia.Models.Home
 import com.example.boltmedia.R
+import me.relex.circleindicator.CircleIndicator
+import me.relex.circleindicator.CircleIndicator3
 
 
 class HomeFragment : Fragment() {
@@ -50,8 +53,13 @@ class HomeFragment : Fragment() {
                 R.drawable.ant_manandthewaspquantumaniaslidem,
                 R.drawable.ie_100131
             )
+//            val indicator: CircleIndicator3 = findViewById(R.id.indicator)
+
 
             viewPager.adapter = CarouselRVAdapter(demoData)
+//            viewPager.adapter = adapter
+//            indicator.setViewPager(viewPager)
+
             val compositePageTransformer = CompositePageTransformer()
             compositePageTransformer.addTransformer(MarginPageTransformer((40 * Resources.getSystem().displayMetrics.density).toInt()))
             compositePageTransformer.addTransformer { page, position ->
@@ -84,7 +92,7 @@ class HomeFragment : Fragment() {
 
 
                         }
-                        recyclerView?.layoutManager=LinearLayoutManager(context)
+                        recyclerView?.layoutManager= GridLayoutManager(context,4)
                         recyclerView?.adapter=HomeAdapter(movies)
 
                     },

@@ -1,13 +1,18 @@
 package com.example.boltmedia.Adapters
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.boltmedia.Info
 import com.example.boltmedia.Models.Movie
 import com.example.boltmedia.R
 
@@ -17,6 +22,7 @@ class movieAdapter(private val movieList:ArrayList<Movie>):RecyclerView.Adapter<
         val img1=itemView.findViewById<ImageView>(R.id.poster)
         val title=itemView.findViewById<TextView>(R.id.title)
         val rating=itemView.findViewById<TextView>(R.id.rating)
+        val card=itemView.findViewById<CardView>(R.id.cardView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,9 +33,16 @@ class movieAdapter(private val movieList:ArrayList<Movie>):RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val movie =movieList[position]
-        holder.title.text="TITLE:"+movie.title
-        holder.rating.text="RATING:"+movie.rating
+        holder.title.text=movie.title
+        holder.rating.text=movie.rating
         Glide.with(context).load("https://image.tmdb.org/t/p/w92"+movie.img).into(holder.img1)
+        holder.card.setOnClickListener {
+            val intent= Intent(context, Info::class.java)
+            val options= Bundle()
+            intent.putExtra("title",movie.title)
+            startActivity(context,intent,options)
+
+        }
 
     }
 

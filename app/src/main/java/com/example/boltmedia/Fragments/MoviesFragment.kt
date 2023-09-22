@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -49,7 +50,7 @@ class MoviesFragment : Fragment() {
                         Log.d("Title:",title)
                         Log.d("Poster:",poster)
                     }
-                    recyclerView?.layoutManager=LinearLayoutManager(context)
+                    recyclerView?.layoutManager=GridLayoutManager(context,4)
                     recyclerView?.adapter= movieAdapter(movieList)
 
                         },

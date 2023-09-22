@@ -20,7 +20,9 @@ class CarouselRVAdapter(private val carouselDataList: ArrayList<Int>) :
 
     override fun onBindViewHolder(holder: CarouselItemViewHolder, position: Int) {
         val imgView = holder.itemView.findViewById<ImageView>(R.id.imgview)
-        imgView.setImageResource(carouselDataList[position])
+
+            imgView.setImageResource(carouselDataList[position])
+
     }
 
     override fun getItemCount(): Int {
