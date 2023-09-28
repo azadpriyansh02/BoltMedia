@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.bumptech.glide.Glide
 import com.example.boltmedia.Info
 import com.example.boltmedia.R
+import com.google.android.material.textfield.TextInputEditText
 
 
 class SearchFragment : Fragment() {
@@ -39,9 +40,8 @@ class SearchFragment : Fragment() {
 
         val search=view.findViewById<Button>(R.id.search)
         search.setOnClickListener {
-            val userinput=view.findViewById<EditText>(R.id.userinput)
+            val userinput=view.findViewById<TextInputEditText>(R.id.userinput)
             var input = userinput.text.toString()
-            val search=view.findViewById<Button>(R.id.search)
             val url = "http://www.omdbapi.com/?t=${input}&apikey=5dbb298b"
             Log.d("link:",url)
             val card=view.findViewById<CardView>(R.id.card)
@@ -74,6 +74,7 @@ class SearchFragment : Fragment() {
                             val name=response.getString("Title")+"\n\n"+"Writer: "+response.getString("Writer")+"\n\n"
                             intent.putExtra("url",imgurl)
                             intent.putExtra("info",name+plot+rating)
+                            intent.putExtra("title",response.getString("Title"))
                             startActivity(intent)
                         }
                     }
