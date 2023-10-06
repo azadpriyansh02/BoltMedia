@@ -13,7 +13,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="60dp">
+        android:background="@color/back"
+       >
 
     </FrameLayout>
 
@@ -25,6 +26,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/frameLayout"
         app:menu="@menu/bottom_nav"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+        android:background="@drawable/nav_rounded"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        app:cardElevation="20dp"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

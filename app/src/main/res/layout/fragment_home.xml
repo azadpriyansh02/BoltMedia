@@ -4,40 +4,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.HomeFragment">
+    tools:context=".Fragments.HomeFragment"
+    android:background="@color/back">
 
     <!-- TODO: Update blank fragment layout -->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager2"
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        app:circularflow_radiusInDP="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498"
-        >
-<!--        <me.relex.circleindicator.CircleIndicator3-->
-<!--            android:id="@+id/indicator"-->
-<!--            android:layout_width="118dp"-->
-<!--            android:layout_height="98dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginTop="8dp" />-->
-    </androidx.viewpager2.widget.ViewPager2>
+
+       <androidx.cardview.widget.CardView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           >
+           <androidx.viewpager2.widget.ViewPager2
+               android:id="@+id/viewPager2"
+               android:layout_width="match_parent"
+               android:layout_height="260dp"
+               app:circularflow_radiusInDP="20dp"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.496"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintVertical_bias="0.498"
+               android:background="@color/back"/>
+           <com.google.android.material.tabs.TabLayout
+               android:id="@+id/tabLayout"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:tabBackground="@drawable/tab_selector"
+               app:tabGravity="center"
+               app:tabIndicatorHeight="0dp"
+               android:background="@android:color/transparent"
+               android:layout_gravity="bottom"/>
+       </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:layout_marginTop="260dp"
-       app:cardCornerRadius="5dp"
-       android:backgroundTint="#3F51B5">
+       app:cardCornerRadius="20dp"
+       >
        <androidx.recyclerview.widget.RecyclerView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:id="@+id/homeRecyclerView"
+           android:background="@color/dark"
            />
    </androidx.cardview.widget.CardView>
+
 
 </FrameLayout>

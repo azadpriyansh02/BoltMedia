@@ -24,6 +24,8 @@ import com.example.boltmedia.Adapters.CarouselRVAdapter
 import com.example.boltmedia.Adapters.HomeAdapter
 import com.example.boltmedia.Models.Home
 import com.example.boltmedia.R
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import me.relex.circleindicator.CircleIndicator
 import me.relex.circleindicator.CircleIndicator3
 
@@ -40,6 +42,7 @@ class HomeFragment : Fragment() {
         view = inflater.inflate(R.layout.fragment_home, container, false)
         val viewPager = view.findViewById<ViewPager2>(R.id.viewPager2)
         val recyclerView=view.findViewById<RecyclerView>(R.id.homeRecyclerView)
+        val tabLayout=view.findViewById<TabLayout>(R.id.tabLayout)
         viewPager.apply {
             clipChildren = false  // No clipping the left and right items
             clipToPadding = false  // Show the viewpager in full width without clipping the padding
@@ -53,10 +56,13 @@ class HomeFragment : Fragment() {
                 R.drawable.ant_manandthewaspquantumaniaslidem,
                 R.drawable.ie_100131
             )
-//            val indicator: CircleIndicator3 = findViewById(R.id.indicator)
+
 
 
             viewPager.adapter = CarouselRVAdapter(demoData)
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+
+            }.attach()
 //            viewPager.adapter = adapter
 //            indicator.setViewPager(viewPager)
 
