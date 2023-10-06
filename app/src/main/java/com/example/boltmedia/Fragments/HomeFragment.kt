@@ -1,11 +1,14 @@
 package com.example.boltmedia.Fragments
 import android.content.res.Resources
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -43,6 +46,8 @@ class HomeFragment : Fragment() {
         val viewPager = view.findViewById<ViewPager2>(R.id.viewPager2)
         val recyclerView=view.findViewById<RecyclerView>(R.id.homeRecyclerView)
         val tabLayout=view.findViewById<TabLayout>(R.id.tabLayout)
+        val progressBar=view.findViewById<ProgressBar>(R.id.progressbar)
+        val transparentBack=view.findViewById<FrameLayout>(R.id.transparentBack)
         viewPager.apply {
             clipChildren = false  // No clipping the left and right items
             clipToPadding = false  // Show the viewpager in full width without clipping the padding
@@ -100,6 +105,10 @@ class HomeFragment : Fragment() {
                         }
                         recyclerView?.layoutManager= GridLayoutManager(context,4)
                         recyclerView?.adapter=HomeAdapter(movies)
+                        val handler = Handler()
+                            progressBar.visibility=View.GONE
+                            transparentBack.visibility=View.GONE
+
 
                     },
                     { error ->

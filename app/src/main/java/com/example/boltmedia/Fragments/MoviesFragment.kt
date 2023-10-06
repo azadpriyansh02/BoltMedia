@@ -1,11 +1,14 @@
 package com.example.boltmedia.Fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +18,8 @@ import com.android.volley.toolbox.*
 import com.example.boltmedia.Adapters.movieAdapter
 import com.example.boltmedia.Models.Movie
 import com.example.boltmedia.R
+import koleton.api.hideSkeleton
+import koleton.api.loadSkeleton
 
 class MoviesFragment : Fragment() {
     lateinit var requestQueue: RequestQueue
@@ -34,7 +39,8 @@ class MoviesFragment : Fragment() {
         }
         val url="https://api.themoviedb.org/3/discover/movie?api_key=483cafeb1a5940078ecba0384f5b9ea2"
         recyclerView=view.findViewById(R.id.recyclerView)
-
+        val progressBar=view.findViewById<ProgressBar>(R.id.progressbar)
+        val transparentBack=view.findViewById<FrameLayout>(R.id.transparentBack)
             val jsonObjectRequest = JsonObjectRequest(
                 Request.Method.GET, url, null,
                 { response ->
@@ -44,6 +50,7 @@ class MoviesFragment : Fragment() {
                         val title=jsonArray.getJSONObject(i).getString("original_title")
                         val poster=jsonArray.getJSONObject(i).getString("poster_path")
                         val rating=jsonArray.getJSONObject(i).getString("vote_average")
+                        val plot=jsonArray.getJSONObject(i).getString("overview")
                         var movie= Movie(poster,title,rating)
                         movieList.add(movie)
                         string+="Title:"+title+"\n"+"Poster:"+poster+"\n"
@@ -52,6 +59,8 @@ class MoviesFragment : Fragment() {
                     }
                     recyclerView?.layoutManager=GridLayoutManager(context,4)
                     recyclerView?.adapter= movieAdapter(movieList)
+                    progressBar.visibility=View.GONE
+                    transparentBack.visibility=View.GONE
 
                         },
                 { error ->

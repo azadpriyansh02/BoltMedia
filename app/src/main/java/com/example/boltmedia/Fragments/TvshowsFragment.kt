@@ -1,11 +1,14 @@
 package com.example.boltmedia.Fragments
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +28,7 @@ class TvshowsFragment : Fragment() {
     private lateinit var view: View
     var tvShowList= arrayListOf<TvShow>()
     var recyclerView:RecyclerView?=null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +41,8 @@ class TvshowsFragment : Fragment() {
         }
         val url="https://api.themoviedb.org/3/discover/tv?api_key=483cafeb1a5940078ecba0384f5b9ea2"
             recyclerView=view.findViewById(R.id.tvRecyclerView)
+            val progressBar=view.findViewById<ProgressBar>(R.id.progressbar)
+        val transparentBack=view.findViewById<FrameLayout>(R.id.transparentBack)
             val jsonObjectRequest = JsonObjectRequest(
                 Request.Method.GET, url, null,
                 { response ->
@@ -55,6 +61,9 @@ class TvshowsFragment : Fragment() {
                     }
                     recyclerView?.layoutManager= GridLayoutManager(context,4)
                     recyclerView?.adapter= tvAdapter(tvShowList)
+                    val handler = Handler()
+                        progressBar.visibility = View.GONE
+                        transparentBack.visibility = View.GONE
                 },
                 { error ->
                     Log.d("vol",error.toString())

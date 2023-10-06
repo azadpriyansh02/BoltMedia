@@ -12,8 +12,11 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.ViewAnimator
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.FirebaseApp
 
@@ -27,6 +30,7 @@ class Signup : AppCompatActivity() {
     private lateinit var loginRedirect:TextView
     private lateinit var intent:Intent
     private lateinit var context:Context
+    private lateinit var progressBar:ProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
@@ -35,20 +39,24 @@ class Signup : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         editTextEmail = findViewById(R.id.signup_email)
         editTextPassword = findViewById(R.id.signup_password)
+        progressBar=findViewById(R.id.progressBar)
 //        editTextName = findViewById(R.id.signup_name)
 //        editTextUsername = findViewById(R.id.signup_username)
         loginRedirect=findViewById(R.id.loginRedirectText)
         signupButton = findViewById(R.id.signup_button)
         signupButton.setOnClickListener {
+            progressBar.visibility= View.VISIBLE
             var email = editTextEmail.text
             var password = editTextPassword.text
 //            var name = editTextName.text
 //            var userName = editTextUsername.text
             if (email == null || email?.contains("@") != true) {
                 Toast.makeText(this, "Enter Valid Mail", Toast.LENGTH_SHORT)
+                progressBar.visibility=View.GONE
             }
             else if (password == null) {
                 Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT)
+                progressBar.visibility=View.GONE
             }
 //            if (name == null) {
 //                Toast.makeText(this, "Enter Name", Toast.LENGTH_SHORT)
@@ -72,6 +80,7 @@ class Signup : AppCompatActivity() {
                                 "Authentication failed.",
                                 Toast.LENGTH_SHORT,
                             ).show()
+                            progressBar.visibility=View.GONE
                         }
                     }
             }

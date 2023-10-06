@@ -12,6 +12,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.BasicNetwork
@@ -19,13 +21,18 @@ import com.android.volley.toolbox.DiskBasedCache
 import com.android.volley.toolbox.HurlStack
 import com.android.volley.toolbox.JsonObjectRequest
 import com.bumptech.glide.Glide
+import com.example.boltmedia.Adapters.SearchAdapter
 import com.example.boltmedia.Info
+import com.example.boltmedia.Models.Movie
+import com.example.boltmedia.Models.Search
 import com.example.boltmedia.R
 import com.google.android.material.textfield.TextInputEditText
+import org.json.JSONArray
 
 
 class SearchFragment : Fragment() {
     lateinit var requestQueue: RequestQueue
+    var List= arrayListOf<Search>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,15 +48,11 @@ class SearchFragment : Fragment() {
         val search=view.findViewById<Button>(R.id.search)
         search.setOnClickListener {
             val userinput=view.findViewById<TextInputEditText>(R.id.userinput)
+            val recyclerView=view.findViewById<RecyclerView>(R.id.searchrecyclerView)
             var input = userinput.text.toString()
-            val url = "http://www.omdbapi.com/?t=${input}&apikey=5dbb298b"
+            val url = "http://www.omdbapi.com/?apikey=5dbb298b&s=${input}"
             Log.d("link:",url)
-            val card=view.findViewById<CardView>(R.id.card)
-            val name=view.findViewById<TextView>(R.id.name)
-            val plot=view.findViewById<TextView>(R.id.plot)
-            val image=view.findViewById<ImageView>(R.id.image)
             val error=view.findViewById<TextView>(R.id.error)
-            val rating=view.findViewById<TextView>(R.id.rating)
             val jsonObjectRequest = JsonObjectRequest(
                 Request.Method.GET, url, null,
                 { response ->
@@ -59,24 +62,22 @@ class SearchFragment : Fragment() {
                         error.text = "NO MOVIE FOUND"
                         error.visibility=View.VISIBLE
                     }else {
-                        userinput.visibility=View.INVISIBLE
-                        search.visibility=View.INVISIBLE
-                        card.visibility=View.VISIBLE
-                        Glide.with(this).load(response.getString("Poster")).into(image)
-                        plot.text = "Plot:"+"\n\n"+response.getString("Plot")+"\n\n"
-                        rating.text= "Rating:"+response.getString("imdbRating")
-                        name.text = response.getString("Title")+"\n\n"+"Writer: "+response.getString("Writer")+"\n\n"
-                        card.setOnClickListener {
-                            val intent=Intent(context, Info::class.java)
-                            val imgurl=response.getString("Poster")
-                            val plot="Plot:"+"\n\n"+response.getString("Plot")+"\n\n"
-                            val rating="Rating:"+response.getString("imdbRating")
-                            val name=response.getString("Title")+"\n\n"+"Writer: "+response.getString("Writer")+"\n\n"
-                            intent.putExtra("url",imgurl)
-                            intent.putExtra("info",name+plot+rating)
-                            intent.putExtra("title",response.getString("Title"))
-                            startActivity(intent)
+                        Log.e("TAG","onCreateView: "+response)
+                        val jsonArray=response.getJSONArray("Search")
+                        for(i in 0..jsonArray.length()-1){
+                            val title=jsonArray.getJSONObject(i).getString("Title")
+                            val poster=jsonArray.getJSONObject(i).getString("Poster")
+                            var search=Search(poster,title)
+                            List.add(search)
+                            Log.d("Title:",title)
+                            Log.d("Poster:",poster)
+
+
                         }
+                        recyclerView.layoutManager=GridLayoutManager(context,2)
+                        recyclerView.adapter=SearchAdapter(List)
+
+
                     }
                 },
                 { error ->

@@ -6,8 +6,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.example.boltmedia.Signup
@@ -23,6 +25,7 @@ class Login : AppCompatActivity() {
     private lateinit var loginButton: Button
     private lateinit var intent: Intent
     private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -33,6 +36,7 @@ class Login : AppCompatActivity() {
         emailEditText=findViewById(R.id.login_email)
         passwordEditText=findViewById(R.id.login_password)
         loginButton=findViewById(R.id.login_button)
+        val progressBar=findViewById<ProgressBar>(R.id.progressBar)
         signupRedirect.setOnClickListener {
             intent=Intent(this,Signup::class.java)
             startActivity(intent)
@@ -40,8 +44,10 @@ class Login : AppCompatActivity() {
         loginButton.setOnClickListener {
             var email=emailEditText.text
             var password=passwordEditText.text
+            progressBar.visibility= View.VISIBLE
             if(email==null || password==null){
                 Toast.makeText(this,"Enter email and Password",Toast.LENGTH_SHORT)
+                progressBar.visibility=View.GONE
             }
             else{
                 auth.signInWithEmailAndPassword(email.toString(), password.toString())
@@ -51,6 +57,7 @@ class Login : AppCompatActivity() {
                             Log.d(ContentValues.TAG, "Login:success")
                             intent=Intent(this,MainActivity::class.java)
                             startActivity(intent)
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(ContentValues.TAG, "Login:failure", task.exception)
@@ -61,6 +68,7 @@ class Login : AppCompatActivity() {
                             ).show()
                         }
                     }
+                progressBar.visibility=View.GONE
             }
         }
     }

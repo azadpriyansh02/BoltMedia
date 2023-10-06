@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "590630560516",
+    "firebase_url": "https://boltmedia-95829-default-rtdb.firebaseio.com",
+    "project_id": "boltmedia-95829",
+    "storage_bucket": "boltmedia-95829.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590630560516:android:93c51baf2ef42f55afa651",
+        "android_client_info": {
+          "package_name": "com.example.boltmedia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUB2xkfF7PQm7BFwpyNazmQ0s8mHiPOng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590630560516:android:c11da531df3b5d00afa651",
+        "android_client_info": {
+          "package_name": "com.example.loginsignup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUB2xkfF7PQm7BFwpyNazmQ0s8mHiPOng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

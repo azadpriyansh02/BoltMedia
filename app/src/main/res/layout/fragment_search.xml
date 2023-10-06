@@ -40,50 +40,15 @@
                 android:layout_marginTop="100dp"
                 style="?attr/materialButtonOutlinedStyle"
                 />
-
-
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/searchrecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp"
-                android:visibility="invisible"
-                android:backgroundTint="@color/purple_200">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:id="@+id/image"
-                        android:layout_width="200dp"
-                        android:layout_height="400dp"
-                        android:layout_marginLeft="85dp"
-                        android:layout_marginTop="30dp" />
+                android:layout_height="match_parent"
+                android:visibility="invisible"/>
 
-                    <TextView
-                        android:id="@+id/name"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="440dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
 
-                    <TextView
-                        android:id="@+id/plot"
-                        android:layout_below="@id/name"
-                        android:layout_marginLeft="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/rating"
-                        android:layout_below="@id/plot"
-                        android:layout_marginLeft="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"/>
 
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/error"
                 android:layout_width="match_parent"
