@@ -1,5 +1,6 @@
 package com.example.boltmedia.Fragments
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
@@ -26,6 +29,7 @@ import com.example.boltmedia.Info
 import com.example.boltmedia.Models.Movie
 import com.example.boltmedia.Models.Search
 import com.example.boltmedia.R
+import com.example.boltmedia.R.id
 import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONArray
 
@@ -33,6 +37,8 @@ import org.json.JSONArray
 class SearchFragment : Fragment() {
     lateinit var requestQueue: RequestQueue
     var List= arrayListOf<Search>()
+    var recyclerView:RecyclerView?=null
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,9 +52,14 @@ class SearchFragment : Fragment() {
         }
 
         val search=view.findViewById<Button>(R.id.search)
+
         search.setOnClickListener {
             val userinput=view.findViewById<TextInputEditText>(R.id.userinput)
-            val recyclerView=view.findViewById<RecyclerView>(R.id.searchrecyclerView)
+            val text=view.findViewById<com.google.android.material.textfield.TextInputLayout>(R.id.text3)
+            recyclerView=view.findViewById(R.id.searchrecyclerView)
+            val progressBar=view.findViewById<ProgressBar>(R.id.progressbar)
+            val transparentBack=view.findViewById<FrameLayout>(R.id.transparentBack)
+            transparentBack.visibility=View.VISIBLE
             var input = userinput.text.toString()
             val url = "http://www.omdbapi.com/?apikey=5dbb298b&s=${input}"
             Log.d("link:",url)
@@ -67,6 +78,7 @@ class SearchFragment : Fragment() {
                         for(i in 0..jsonArray.length()-1){
                             val title=jsonArray.getJSONObject(i).getString("Title")
                             val poster=jsonArray.getJSONObject(i).getString("Poster")
+                            val imdbID=jsonArray.getJSONObject(i).getString("imdbID")
                             var search=Search(poster,title)
                             List.add(search)
                             Log.d("Title:",title)
@@ -74,8 +86,15 @@ class SearchFragment : Fragment() {
 
 
                         }
-                        recyclerView.layoutManager=GridLayoutManager(context,2)
-                        recyclerView.adapter=SearchAdapter(List)
+                        recyclerView?.visibility=View.VISIBLE
+                        recyclerView?.layoutManager=GridLayoutManager(context,4)
+                        recyclerView?.adapter=SearchAdapter(List)
+                        userinput.visibility=View.INVISIBLE
+                        search.visibility=View.INVISIBLE
+                        text.visibility=View.INVISIBLE
+                        progressBar.visibility=View.GONE
+                        transparentBack.visibility=View.GONE
+
 
 
                     }

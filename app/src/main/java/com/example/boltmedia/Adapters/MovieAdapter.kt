@@ -35,11 +35,14 @@ class movieAdapter(private val movieList:ArrayList<Movie>):RecyclerView.Adapter<
         val movie =movieList[position]
         holder.title.text=movie.title
         holder.rating.text=movie.rating
-        Glide.with(context).load("https://image.tmdb.org/t/p/w92"+movie.img).into(holder.img1)
+        Glide.with(context).load("https://image.tmdb.org/t/p/original"+movie.img).into(holder.img1)
         holder.card.setOnClickListener {
             val intent= Intent(context, Info::class.java)
             val options= Bundle()
             intent.putExtra("title",movie.title)
+            intent.putExtra("plot",movie.plot)
+            intent.putExtra("rating",movie.rating)
+            intent.putExtra("img","https://image.tmdb.org/t/p/w92"+movie.img)
             startActivity(context,intent,options)
 
         }

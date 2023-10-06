@@ -52,11 +52,12 @@ class TvshowsFragment : Fragment() {
                         val title=jsonArray.getJSONObject(i).getString("original_name")
                         val poster=jsonArray.getJSONObject(i).getString("poster_path")
                         val rating=jsonArray.getJSONObject(i).getString("vote_average")
+                        val plot=jsonArray.getJSONObject(i).getString("overview")
                         Log.d("Title:",title)
                         Log.d("Poster:",poster)
                         Log.d("Rating:",rating)
                         string+="Title:"+title+"\n"+"Plot:"+poster+"\n"+"Rating:"+rating+"\n"
-                        var tvShow= TvShow(poster,title,rating)
+                        var tvShow= TvShow(poster,title,rating,plot)
                         tvShowList.add(tvShow)
                     }
                     recyclerView?.layoutManager= GridLayoutManager(context,4)

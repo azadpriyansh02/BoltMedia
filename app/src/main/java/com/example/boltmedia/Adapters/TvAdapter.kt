@@ -40,6 +40,9 @@ class tvAdapter(private val tvShowList:ArrayList<TvShow>):RecyclerView.Adapter<t
             val intent= Intent(context, Info::class.java)
             val options= Bundle()
             intent.putExtra("title",movie.title)
+            intent.putExtra("plot",movie.plot)
+            intent.putExtra("rating",movie.rating)
+            intent.putExtra("img","https://image.tmdb.org/t/p/original"+movie.img)
             ContextCompat.startActivity(context, intent, options)
 
         }

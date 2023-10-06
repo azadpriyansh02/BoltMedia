@@ -33,6 +33,7 @@ class SearchAdapter(private val List:ArrayList<Search>):RecyclerView.Adapter<Sea
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val movie = List[position]
         holder.title.text = movie.title
+        holder.rating.text=null
         Glide.with(context).load(movie.img).into(holder.img1)
         holder.card.setOnClickListener {
             val intent = Intent(context, Info::class.java)

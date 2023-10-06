@@ -41,6 +41,9 @@ class HomeAdapter (private val movieList:ArrayList<Home>): RecyclerView.Adapter<
             val intent= Intent(context, Info::class.java)
             val options= Bundle()
             intent.putExtra("title",movie.title)
+            intent.putExtra("plot",movie.plot)
+            intent.putExtra("rating",movie.rating)
+            intent.putExtra("img",movie.img)
             ContextCompat.startActivity(context, intent, options)
 
         }

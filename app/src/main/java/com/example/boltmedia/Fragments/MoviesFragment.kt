@@ -18,8 +18,6 @@ import com.android.volley.toolbox.*
 import com.example.boltmedia.Adapters.movieAdapter
 import com.example.boltmedia.Models.Movie
 import com.example.boltmedia.R
-import koleton.api.hideSkeleton
-import koleton.api.loadSkeleton
 
 class MoviesFragment : Fragment() {
     lateinit var requestQueue: RequestQueue
@@ -51,7 +49,7 @@ class MoviesFragment : Fragment() {
                         val poster=jsonArray.getJSONObject(i).getString("poster_path")
                         val rating=jsonArray.getJSONObject(i).getString("vote_average")
                         val plot=jsonArray.getJSONObject(i).getString("overview")
-                        var movie= Movie(poster,title,rating)
+                        var movie= Movie(poster,title,rating,plot)
                         movieList.add(movie)
                         string+="Title:"+title+"\n"+"Poster:"+poster+"\n"
                         Log.d("Title:",title)
